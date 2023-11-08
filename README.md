@@ -111,9 +111,9 @@ I wrote the code where the robot searches the nearest token and then the robot g
 ![main drawio](https://github.com/TNunige/RT1_assignment1/assets/145358917/182c712d-ea30-4ed7-8c85-1c5f684e25f4)
 
 #### constants ####
--a_th: threshold for the control of the orientation
--d_th: threshold for the control of the linear distance
--token_list: the list for storing the code of the paired tokens
+- a_th: threshold for the control of the orientation
+- d_th: threshold for the control of the linear distance
+- token_list: the list for storing the code of the paired tokens
 #### the functions ####
 ##### drive(speed,seconds) #####
 This function sets a linear velocity
