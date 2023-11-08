@@ -103,3 +103,72 @@ for m in markers:
 ```
 
 [sr-api]: https://studentrobotics.org/docs/programming/sr/
+
+###1st assignment###
+The goal of the first assignment is to put all the golden boxes together.
+I wrote the code where the robot searches the nearest token and then the robot goes to release it near the paired tokens.
+####flowchart####
+![main drawio](https://github.com/TNunige/RT1_assignment1/assets/145358917/182c712d-ea30-4ed7-8c85-1c5f684e25f4)
+
+####constants####
+-a_th: threshold for the control of the orientation
+-d_th: threshold for the control of the linear distance
+-token_list: the list for storing the code of the paired tokens
+####the functions####
+#####drive(speed,seconds)#####
+This function sets a linear velocity
+```python
+R.motors[0].m0.power = speed
+R.motors[0].m1.power = speed
+time.sleep(seconds)
+R.motors[0].m0.power = 0
+R.motors[0].m1.power = 0
+```
+
+#####turn(speed,seconds)#####
+This function sets an angular  velocity
+```python
+R.motors[0].m0.power = speed
+R.motors[0].m1.power = -speed
+time.sleep(seconds)
+R.motors[0].m0.power = 0
+R.motors[0].m1.power = 0
+```
+#####check_code(token_list,code)#####
+This function checks if the token is already inside the list(which means the token is already paired). This returns -1 if the token is already inside the list, and otherwise returns 1.
+```python
+for i in token_list:
+    if(i == code):
+       return -1
+return 1
+```
+#####find_token()#####
+This function searches for the closest token that wasn't taken before.
+```python
+dist = 100
+for token in R.see():
+    if token.dist < dist and check_code(token_list,token.info.code) == 1:
+        dist = token.dist
+        rot_y = token.rot_y
+        code = token.info.code
+if dist == 100:
+    return -1, -1, 0
+else:
+    return dist, rot_y, code
+
+```
+#####find_token_paired#####
+This function searches for the last token that got paired.
+```python
+dist = 100
+for token in R.see():
+    if token.dist < dist and token.info.code == token_list[-2]
+        dist = token.dist
+        rot_y = token.rot_y
+        code = token.info.code
+if dist == 100:
+    return -1, -1, 0
+else:
+    return dist, rot_y
+
+```
