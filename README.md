@@ -134,7 +134,7 @@ time.sleep(seconds)
 R.motors[0].m0.power = 0
 R.motors[0].m1.power = 0
 ```
-#### check_code(token_list,code) ####
+#### check_code(list,code) ####
 This function checks if the token is already inside the list(which means the token is already paired). This returns -1 if the token is already inside the list, and otherwise returns 1.
 ```python
 for i in token_list:
